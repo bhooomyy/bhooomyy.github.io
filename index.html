@@ -6,11 +6,7 @@
     <title>Bhoomi Bhatt | Data Analytics Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --dark-bg: #0a0e27;
@@ -26,9 +22,7 @@
             --grid-color: rgba(0, 217, 255, 0.05);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'IBM Plex Sans', sans-serif;
@@ -40,15 +34,11 @@
             background-attachment: fixed;
         }
 
-        /* Grid background pattern */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
                 linear-gradient(0deg, transparent 24%, var(--grid-color) 25%, var(--grid-color) 26%, transparent 27%, transparent 74%, var(--grid-color) 75%, var(--grid-color) 76%, transparent 77%, transparent),
                 linear-gradient(90deg, transparent 24%, var(--grid-color) 25%, var(--grid-color) 26%, transparent 27%, transparent 74%, var(--grid-color) 75%, var(--grid-color) 76%, transparent 77%, transparent);
             background-size: 60px 60px;
@@ -56,18 +46,11 @@
             z-index: 1;
         }
 
-        /* Ensure content is above grid */
-        body > * {
-            position: relative;
-            z-index: 2;
-        }
+        body > * { position: relative; z-index: 2; }
 
-        /* Navigation */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             background: rgba(5, 8, 18, 0.85);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
@@ -94,11 +77,7 @@
             text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 
         .nav-links a {
             text-decoration: none;
@@ -114,24 +93,16 @@
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
             background: var(--accent-1);
             transition: width 0.3s ease;
             box-shadow: 0 0 10px var(--accent-1);
         }
 
-        .nav-links a:hover {
-            color: var(--accent-1);
-        }
+        .nav-links a:hover { color: var(--accent-1); }
+        .nav-links a:hover::after { width: 100%; }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
         .hero {
             margin-top: 70px;
             min-height: 100vh;
@@ -144,10 +115,8 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: -20%;
-            width: 600px;
-            height: 600px;
+            top: 0; right: -20%;
+            width: 600px; height: 600px;
             background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
             animation: float 8s ease-in-out infinite;
         }
@@ -155,10 +124,8 @@
         .hero::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: -10%;
-            width: 500px;
-            height: 500px;
+            bottom: 0; left: -10%;
+            width: 500px; height: 500px;
             background: radial-gradient(circle, rgba(255, 0, 110, 0.08) 0%, transparent 70%);
             animation: float 10s ease-in-out infinite;
         }
@@ -177,24 +144,46 @@
             width: 100%;
         }
 
-        .hero-content h1 {
+        /* ── Typewriter title ── */
+        .hero-title-wrapper {
             font-family: 'IBM Plex Mono', monospace;
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             line-height: 1.2;
             margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
             font-weight: 700;
+            letter-spacing: -0.02em;
+            min-height: 2.6em;
         }
 
-        .hero-content h1 .cyan {
+        .title-line-1 {
+            display: block;
+            color: #ff6eb4;
+            text-shadow: 0 0 30px rgba(255, 110, 180, 0.4);
+        }
+
+        .title-line-2 {
+            display: block;
+            min-height: 1.2em;
+        }
+
+        #typed-role {
             color: var(--accent-1);
             text-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
         }
 
-        .hero-content h1 .magenta {
+        /* blinking cursor appended via JS so it doesn't shift layout */
+        #cursor {
+            display: inline-block;
             color: var(--accent-2);
-            text-shadow: 0 0 30px rgba(255, 0, 110, 0.4);
+            text-shadow: 0 0 15px rgba(255, 0, 110, 0.6);
+            animation: blink 0.7s step-start infinite;
+            margin-left: 2px;
+            font-weight: 400;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .hero-content p {
@@ -228,18 +217,12 @@
         .stat::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 1px;
             background: linear-gradient(90deg, var(--accent-1), transparent);
         }
 
-        .stat:hover {
-            border-color: var(--accent-1);
-            background: rgba(0, 217, 255, 0.05);
-            transform: translateY(-2px);
-        }
+        .stat:hover { border-color: var(--accent-1); background: rgba(0, 217, 255, 0.05); transform: translateY(-2px); }
 
         .stat-value {
             font-family: 'IBM Plex Mono', monospace;
@@ -257,11 +240,7 @@
             font-weight: 600;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+        .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
 
         .btn {
             padding: 0.85rem 2rem;
@@ -280,43 +259,14 @@
             font-family: 'IBM Plex Mono', monospace;
         }
 
-        .btn-primary {
-            background: var(--accent-1);
-            color: var(--darker-bg);
-            border-color: var(--accent-1);
-        }
+        .btn-primary { background: var(--accent-1); color: var(--darker-bg); border-color: var(--accent-1); }
+        .btn-primary:hover { box-shadow: 0 0 20px rgba(0, 217, 255, 0.5), inset 0 0 20px rgba(0, 217, 255, 0.1); transform: translateY(-2px); }
+        .btn-secondary { border-color: var(--accent-2); color: var(--accent-2); background: transparent; }
+        .btn-secondary:hover { background: rgba(255, 0, 110, 0.1); box-shadow: 0 0 20px rgba(255, 0, 110, 0.3); transform: translateY(-2px); }
 
-        .btn-primary:hover {
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.5), inset 0 0 20px rgba(0, 217, 255, 0.1);
-            transform: translateY(-2px);
-        }
+        section { padding: 6rem 2rem; max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
 
-        .btn-secondary {
-            border-color: var(--accent-2);
-            color: var(--accent-2);
-            background: transparent;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 0, 110, 0.1);
-            box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Section styles */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-header {
-            margin-bottom: 3rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2rem;
-        }
+        .section-header { margin-bottom: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; }
 
         .section-title {
             font-family: 'IBM Plex Mono', monospace;
@@ -328,20 +278,9 @@
             margin-bottom: 0.5rem;
         }
 
-        .section-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
+        .section-subtitle { font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
 
         .skill-block {
             padding: 2rem;
@@ -357,23 +296,15 @@
         .skill-block::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--accent-1), transparent);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .skill-block:hover {
-            border-color: var(--accent-1);
-            background: rgba(0, 217, 255, 0.08);
-        }
-
-        .skill-block:hover::before {
-            opacity: 1;
-        }
+        .skill-block:hover { border-color: var(--accent-1); background: rgba(0, 217, 255, 0.08); }
+        .skill-block:hover::before { opacity: 1; }
 
         .skill-block h3 {
             font-family: 'IBM Plex Mono', monospace;
@@ -385,11 +316,7 @@
             font-weight: 600;
         }
 
-        .skill-tags {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
+        .skill-tags { display: flex; flex-direction: column; gap: 0.75rem; }
 
         .skill-tag {
             display: inline-block;
@@ -404,19 +331,9 @@
             width: fit-content;
         }
 
-        .skill-tag:hover {
-            border-color: var(--accent-1);
-            color: var(--accent-1);
-            background: rgba(0, 217, 255, 0.05);
-        }
+        .skill-tag:hover { border-color: var(--accent-1); color: var(--accent-1); background: rgba(0, 217, 255, 0.05); }
 
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
 
         .project-card {
             padding: 1.75rem;
@@ -435,30 +352,17 @@
         .project-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--accent-1), var(--accent-2), transparent);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .project-card:hover {
-            border-color: var(--accent-1);
-            background: rgba(0, 217, 255, 0.08);
-            transform: translateY(-4px);
-        }
+        .project-card:hover { border-color: var(--accent-1); background: rgba(0, 217, 255, 0.08); transform: translateY(-4px); }
+        .project-card:hover::before { opacity: 1; }
 
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        .project-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            opacity: 0.7;
-        }
+        .project-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.7; }
 
         .project-title {
             font-family: 'IBM Plex Mono', monospace;
@@ -470,20 +374,9 @@
             letter-spacing: 0.05em;
         }
 
-        .project-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.25rem;
-            line-height: 1.6;
-            flex-grow: 1;
-        }
+        .project-desc { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6; flex-grow: 1; }
 
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
 
         .project-tag {
             font-family: 'IBM Plex Mono', monospace;
@@ -495,11 +388,7 @@
             background: rgba(0, 217, 255, 0.05);
         }
 
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
+        .project-links { display: flex; gap: 1rem; margin-top: 1rem; }
 
         .project-link {
             color: var(--accent-1);
@@ -517,57 +406,22 @@
             background: rgba(0, 217, 255, 0.05);
         }
 
-        .project-link:hover {
-            background: rgba(0, 217, 255, 0.15);
-            box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
-            transform: translateY(-2px);
-        }
+        .project-link:hover { background: rgba(0, 217, 255, 0.15); box-shadow: 0 0 10px rgba(0, 217, 255, 0.3); transform: translateY(-2px); }
 
-        .project-link.github {
-            color: var(--accent-2);
-            border-color: var(--accent-2);
-            background: rgba(255, 0, 110, 0.05);
-        }
+        .project-link.github { color: var(--accent-2); border-color: var(--accent-2); background: rgba(255, 0, 110, 0.05); }
+        .project-link.github:hover { background: rgba(255, 0, 110, 0.15); box-shadow: 0 0 10px rgba(255, 0, 110, 0.3); }
 
-        .project-link.github:hover {
-            background: rgba(255, 0, 110, 0.15);
-            box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
-        }
+        .contact { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .contact-content { max-width: 700px; margin: 0 auto; }
+        .contact-content p { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.8; }
 
-        /* Contact Section */
-        .contact {
-            text-align: center;
-            padding: 4rem 2rem;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .contact-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .contact-content p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
 
         .social-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border: 1px solid var(--border-color);
             border-radius: 2px;
             color: var(--text-secondary);
@@ -577,74 +431,180 @@
             background: rgba(17, 23, 41, 0.5);
         }
 
-        .social-link:hover {
+        .social-link:hover { border-color: var(--accent-1); color: var(--accent-1); background: rgba(0, 217, 255, 0.08); box-shadow: 0 0 20px rgba(0, 217, 255, 0.2); }
+
+        .contact-info { font-size: 0.9rem; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
+
+        footer { background: rgba(5, 8, 18, 0.8); border-top: 1px solid var(--border-color); padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; letter-spacing: 0.05em; }
+
+        /* ── Experience Section ── */
+        .experience-timeline {
+            position: relative;
+            margin-top: 2rem;
+            padding-left: 2rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--accent-1), var(--accent-2), transparent);
+        }
+
+        .exp-card {
+            position: relative;
+            padding: 1.75rem 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 2px;
+            background: rgba(17, 23, 41, 0.5);
+            backdrop-filter: blur(10px);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 1.75rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-1);
+            border: 2px solid var(--darker-bg);
+            box-shadow: 0 0 12px rgba(0, 217, 255, 0.6);
+        }
+
+        .exp-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .exp-card:hover {
             border-color: var(--accent-1);
+            background: rgba(0, 217, 255, 0.05);
+            transform: translateX(4px);
+        }
+
+        .exp-card:hover::after { opacity: 1; }
+
+        .exp-card.current::before {
+            background: #ff6eb4;
+            box-shadow: 0 0 12px rgba(255, 110, 180, 0.7);
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 12px rgba(255, 110, 180, 0.7); }
+            50% { box-shadow: 0 0 20px rgba(255, 110, 180, 1); }
+        }
+
+        .exp-header { margin-bottom: 1rem; }
+
+        .exp-role {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            font-weight: 700;
             color: var(--accent-1);
-            background: rgba(0, 217, 255, 0.08);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
-        }
-
-        .contact-info {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
         }
 
-        /* Footer */
-        footer {
-            background: rgba(5, 8, 18, 0.8);
-            border-top: 1px solid var(--border-color);
-            padding: 2rem;
-            text-align: center;
+        .exp-company {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .exp-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
             letter-spacing: 0.05em;
         }
 
-        /* Responsive */
+        .exp-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+        .exp-badge {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.6rem;
+            border: 1px solid var(--accent-2);
+            color: var(--accent-2);
+            border-radius: 1px;
+            background: rgba(255, 0, 110, 0.08);
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            letter-spacing: 0.08em;
+        }
+
+        .exp-badge.current-badge {
+            border-color: #ff6eb4;
+            color: #ff6eb4;
+            background: rgba(255, 110, 180, 0.08);
+        }
+
+        .exp-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .exp-bullets li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            padding-left: 1.2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .exp-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-1);
+            font-size: 0.75rem;
+            top: 0.15rem;
+        }
+
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 1.5rem;
-            }
-
-            .hero-container {
-                padding: 0 1rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-stats {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 3rem 1rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
+            .nav-links { gap: 1.5rem; }
+            .hero-container { padding: 0 1rem; }
+            .hero-title-wrapper { font-size: 2rem; }
+            .hero-stats { grid-template-columns: 1fr 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            section { padding: 3rem 1rem; }
+            .section-title { font-size: 1.5rem; }
+            .experience-timeline { padding-left: 1.5rem; }
+            .exp-card::before { left: -2rem; }
+            .exp-meta { gap: 0.5rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo">> BHOOMI.DEV</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -652,27 +612,30 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-content">
-                <h1>
-                    <span class="cyan">DATA</span><br>
-                    <span class="magenta">ANALYST</span>
-                </h1>
+
+                <div class="hero-title-wrapper">
+                    <span class="title-line-1">BHOOMI BHATT</span>
+                    <span class="title-line-2">
+                        <span id="typed-role"></span><span id="cursor">|</span>
+                    </span>
+                </div>
+
                 <p>Master of Applied Computer Science @ Concordia. Data analyst and BI professional with hands-on experience in ETL pipeline design, star-schema modeling, DAX development, and executive dashboard delivery. Python | SQL | Power BI | Tableau | Azure</p>
-                
+
                 <div class="hero-stats">
                     <div class="stat">
-                        <div class="stat-value">7</div>
+                        <div class="stat-value">10+</div>
                         <div class="stat-label">Projects</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-value">500K+</div>
+                        <div class="stat-value">10M+</div>
                         <div class="stat-label">Records</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-value">10+</div>
+                        <div class="stat-value">15+</div>
                         <div class="stat-label">Dashboards</div>
                     </div>
                     <div class="stat">
@@ -689,13 +652,87 @@
         </div>
     </section>
 
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-header">
+            <h2 class="section-title">EXPERIENCE</h2>
+            <p class="section-subtitle">Professional Journey</p>
+        </div>
+
+        <div class="experience-timeline">
+
+            <!-- Vosyn - Current -->
+            <div class="exp-card current">
+                <div class="exp-header">
+                    <div class="exp-role">Data Analyst – Risk Analyst <span class="exp-badge current-badge">PRESENT</span></div>
+                    <div class="exp-company">Vosyn <span class="exp-badge">Contract · Full-time</span></div>
+                    <div class="exp-meta">
+                        <span>📅 Apr 2026 – Present · 3 mos</span>
+                        <span>📍 Montreal, QC · Remote</span>
+                    </div>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Developed Python automation scripts to streamline financial data reconciliation workflows, eliminating manual effort in identifying billing discrepancies, duplicate entries, and mismatched transaction records</li>
+                    <li>Performed end-to-end data reconciliation across accounts payable and receivable including bill creation, verification, and editing in QuickBooks ensuring financial records are accurate, complete, and audit-ready</li>
+                    <li>Designed and maintained Azure SQL Database schemas and ETL pipelines via Azure Data Factory to consolidate financial and compliance data from multiple sources into a centralized reporting layer</li>
+                    <li>Leveraged PySpark for large-scale financial data processing performing aggregations, transformations, and anomaly detection across transaction datasets to surface risk indicators and compliance gaps</li>
+                    <li>Conducted risk identification and documentation flagging data integrity issues, financial discrepancies, and process vulnerabilities with structured reporting aligned to compliance standards</li>
+                    <li>Built SQL-based analytical queries to support ad hoc financial investigations, trend analysis, and variance reporting across accounts, vendors, and cost centers</li>
+                    <li>Maintained detailed compliance documentation including data dictionaries, process runbooks, and audit trails to support internal review and regulatory requirements</li>
+                    <li>Collaborated with finance and accounting leadership presenting data findings and translating complex analytical outputs into clear business recommendations</li>
+                </ul>
+            </div>
+
+            <!-- Source 360 -->
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-role">Analytics Engineer</div>
+                    <div class="exp-company">Source 360 SCM Services <span class="exp-badge">Permanent · Full-time</span></div>
+                    <div class="exp-meta">
+                        <span>📅 Jul 2022 – Dec 2023 · 1 yr 6 mos</span>
+                        <span>📍 Vadodara, Gujarat, India · On-site</span>
+                    </div>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Engineered and maintained end-to-end ETL pipelines using Azure Data Factory and PySpark to ingest, transform, and load supply chain data across vendor, inventory, and transaction domains</li>
+                    <li>Performed comprehensive data cleaning including null handling, missing data imputation, data type standardization, deduplication, and discrepancy resolution ensuring high-quality datasets for downstream analytics</li>
+                    <li>Conducted data validation and ad hoc analysis on supply chain transactions, vendor performance, and stock level data to identify anomalies and support operational decision-making</li>
+                    <li>Built and published interactive dashboards and reports in Power BI and Tableau, providing real-time visibility into supply chain KPIs for senior management and cross-functional teams</li>
+                    <li>Wrote complex SQL queries and Python scripts to support data extraction, transformation, and exploratory analysis across large-scale SCM datasets</li>
+                    <li>Collaborated with stakeholders across procurement, logistics, and vendor management to gather requirements and translate business needs into analytical solutions</li>
+                    <li>Followed SDLC practices throughout the analytics development lifecycle from requirements gathering and solution design through testing, deployment, and documentation</li>
+                    <li>Communicated analytical insights and project updates to senior leadership and cross-functional teams in a fast-paced supply chain environment</li>
+                </ul>
+            </div>
+
+            <!-- August Infotech -->
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-role">Data Analyst <span class="exp-badge">Internship</span></div>
+                    <div class="exp-company">August Infotech</div>
+                    <div class="exp-meta">
+                        <span>📅 Jan 2022 – Jun 2022 · 6 mos</span>
+                        <span>📍 Surat, Gujarat, India · Remote</span>
+                    </div>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Performed data validation and quality checks on large datasets using Python and Excel to ensure accuracy and consistency across reporting pipelines</li>
+                    <li>Wrote and executed SQL queries to extract, transform, and analyze data from relational databases in support of business reporting</li>
+                    <li>Built and maintained dashboards and visual reports using Power BI and Tableau to communicate key metrics to stakeholders</li>
+                    <li>Conducted A/B testing and UAT to validate data-driven features and ensure analytical outputs met business specifications</li>
+                    <li>Automated data extraction and reporting workflows using Python and Selenium, reducing manual effort in recurring data tasks</li>
+                    <li>Tracked and managed data quality issues and test metrics using Zephyr, maintaining structured documentation for traceability</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
     <!-- Skills Section -->
-    <section id="skills">
         <div class="section-header">
             <h2 class="section-title">TECHNICAL STACK</h2>
             <p class="section-subtitle">Languages, Tools & Platforms</p>
         </div>
-
         <div class="skills-grid">
             <div class="skill-block">
                 <h3>Languages & Core</h3>
@@ -705,7 +742,6 @@
                     <span class="skill-tag">DAX</span>
                 </div>
             </div>
-
             <div class="skill-block">
                 <h3>BI & Visualization</h3>
                 <div class="skill-tags">
@@ -714,7 +750,6 @@
                     <span class="skill-tag">Power Query</span>
                 </div>
             </div>
-
             <div class="skill-block">
                 <h3>Databases & SQL</h3>
                 <div class="skill-tags">
@@ -723,7 +758,6 @@
                     <span class="skill-tag">Advanced SQL</span>
                 </div>
             </div>
-
             <div class="skill-block">
                 <h3>Python Libraries</h3>
                 <div class="skill-tags">
@@ -732,7 +766,6 @@
                     <span class="skill-tag">Matplotlib</span>
                 </div>
             </div>
-
             <div class="skill-block">
                 <h3>Cloud & Data</h3>
                 <div class="skill-tags">
@@ -742,7 +775,6 @@
                     <span class="skill-tag">Azure SQL Database</span>
                 </div>
             </div>
-
             <div class="skill-block">
                 <h3>Tools & Governance</h3>
                 <div class="skill-tags">
@@ -754,66 +786,58 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
         <div class="section-header">
             <h2 class="section-title">PROJECTS</h2>
             <p class="section-subtitle">End-to-End Analytics Solutions</p>
         </div>
-
         <div class="projects-grid">
+
+            <!-- 1. ChainForge — NEW flagship -->
             <div class="project-card">
-                <div class="project-icon">👥</div>
-                <h3 class="project-title">Customer Churn Analysis</h3>
-                <p class="project-desc">RBC banking dataset (10K customers). Star-schema model with advanced DAX measures, time intelligence. Executive dashboard + parallel Excel UAT validation.</p>
+                <div class="project-icon">⛓️</div>
+                <h3 class="project-title">ChainForge — Supply Chain Pipeline</h3>
+                <p class="project-desc">End-to-end cloud data engineering pipeline. Azure Data Lake Gen2 → Azure Data Factory (Spark) → 6-page Power BI dashboard. Ingests 4 formats (CSV, Parquet, Avro, JSON), ~180K records across 2015–2018. MySQL UAT validation. Delivery late rate: 54.52% flagged as critical insight.</p>
                 <div class="project-tags">
+                    <span class="project-tag">Azure Data Factory</span>
+                    <span class="project-tag">Azure Data Lake Gen2</span>
                     <span class="project-tag">Power BI</span>
-                    <span class="project-tag">DAX</span>
-                    <span class="project-tag">Excel</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/customer-churn-analysis-excel-power-bi-1" class="project-link">📖 Details</a>
-                    <a href="https://github.com/bhooomyy/RBC_CustomerChurnAnalysis" class="project-link github">💻 GitHub</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-icon">🏥</div>
-                <h3 class="project-title">Healthcare Analytics</h3>
-                <p class="project-desc">Python ETL processing 55,500 patient records with 2-stage deduplication. 5-dashboard Tableau suite covering clinical outcomes, financials, and physician performance.</p>
-                <div class="project-tags">
-                    <span class="project-tag">Python</span>
-                    <span class="project-tag">Pandas</span>
-                    <span class="project-tag">Tableau</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/" class="project-link">📖 Details</a>
-                    <a href="https://github.com/bhooomyy/Healthcare_Dashboard_Tableau" class="project-link github">💻 GitHub</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-icon">💳</div>
-                <h3 class="project-title">Credit Risk Analytics With Early Warning Signals </h3>
-                <p class="project-desc">LendingClub (500K+ records). Multi-stage SQL pipeline with risk classification, early-warning signals, and portfolio exposure analysis.</p>
-                <div class="project-tags">
-                    <span class="project-tag">Python</span>
+                    <span class="project-tag">PySpark</span>
                     <span class="project-tag">MySQL</span>
-                    <span class="project-tag">SQL</span>
                 </div>
                 <div class="project-links">
-                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/credit-risk-analytics-with-early-warning-signals-python-mysql" class="project-link">📖 Details</a>
-                    <a href="https://github.com/bhooomyy/Credit-Risk-Analytics-with-Early-Warning-Signals" class="project-link github">💻 GitHub</a>
+                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/stm-transit-dashboard-société-de-transport-de-montréal-qc" class="project-link">📖 Details</a>
+                    <a href="https://github.com/bhooomyy/STM_Dashboard" class="project-link github">💻 GitHub</a>
                 </div>
             </div>
 
+            <!-- 2. Retail Chips -->
+            <div class="project-card">
+                <div class="project-icon">🛒</div>
+                <h3 class="project-title">Retail Chips Category Analytics</h3>
+                <p class="project-desc">246,741 chip transactions across 300+ stores. Customer segmentation across 21 demographic segments, statistical t-tests to validate price tiers (all p&lt;0.05). Pearson correlation control-store matching (r=0.97) for trial store rollout decisions. 3-dashboard Power BI suite.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">SciPy</span>
+                    <span class="project-tag">MySQL</span>
+                    <span class="project-tag">Power BI</span>
+                    <span class="project-tag">Statistics</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/stm-transit-dashboard-société-de-transport-de-montréal-qc" class="project-link">📖 Details</a>
+                    <a href="https://github.com/bhooomyy/STM_Dashboard" class="project-link github">💻 GitHub</a>
+                </div>
+            </div>
+
+            <!-- 3. STM -->
             <div class="project-card">
                 <div class="project-icon">🚆</div>
-                <h3 class="project-title">STM Public Transit</h3>
-                <p class="project-desc">Montreal GTFS data. 11-table star-schema model with 3 Power BI dashboards. 215 routes, 273K+ trips, real operational analytics.</p>
+                <h3 class="project-title">STM Public Transit Operations</h3>
+                <p class="project-desc">Montreal GTFS data. 11-table star-schema with custom engineered tables (fragility_index, service_week_profile). 3 Power BI dashboards with GIS/Esri map layer. 215 routes, 273,967 trips, 8,745 stops. Most complex data model in portfolio.</p>
                 <div class="project-tags">
                     <span class="project-tag">Power BI</span>
                     <span class="project-tag">DAX</span>
+                    <span class="project-tag">GIS / Esri</span>
                     <span class="project-tag">Star Schema</span>
                 </div>
                 <div class="project-links">
@@ -822,29 +846,84 @@
                 </div>
             </div>
 
+            <!-- 4. Custom DBMS -->
             <div class="project-card">
-                <div class="project-icon">📊</div>
-                <h3 class="project-title">SQL Analytics</h3>
-                <p class="project-desc">PostgreSQL. 5 business domains: restaurant, banking, retail, subscriptions, supply chain. CTEs, window functions, cohort analysis.</p>
+                <div class="project-icon">🗄️</div>
+                <h3 class="project-title">Custom DBMS from Scratch</h3>
+                <p class="project-desc">Full database management system in pure Python using CSV as storage engine. Implements ACID-like transactions (UUID staging dirs, atomic commit/rollback), SHA-256 auth, SQL-like query engine (SELECT / INSERT / UPDATE / DELETE / WHERE), and per-user directory isolation.</p>
                 <div class="project-tags">
-                    <span class="project-tag">PostgreSQL</span>
-                    <span class="project-tag">Advanced SQL</span>
-                    <span class="project-tag">CTE</span>
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">Transactions</span>
+                    <span class="project-tag">SQL Engine</span>
+                    <span class="project-tag">SHA-256</span>
                 </div>
                 <div class="project-links">
-                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/end-to-end-sql-analytics-for-customer-behavior-operations-postgresql" class="project-link">📖 Details</a>
-                    <a href="https://github.com/bhooomyy/5-Week-SQL-Challenge" class="project-link github">💻 GitHub</a>
+                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/stm-transit-dashboard-société-de-transport-de-montréal-qc" class="project-link">📖 Details</a>
+                    <a href="https://github.com/bhooomyy/STM_Dashboard" class="project-link github">💻 GitHub</a>
                 </div>
             </div>
 
-        <div class="project-card">
+            <!-- 5. Healthcare -->
+            <div class="project-card">
+                <div class="project-icon">🏥</div>
+                <h3 class="project-title">End-to-End Healthcare Analytics</h3>
+                <p class="project-desc">Python ETL on 55,500 patient records → 50,000 clean via 2-stage deduplication. Feature engineering: age bands, billing ranges, stay duration. 5-dashboard Tableau suite — clinical outcomes, financials, physician/hospital performance. $1.28B total billing analysed.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">Pandas</span>
+                    <span class="project-tag">Tableau</span>
+                    <span class="project-tag">PyArrow</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/" class="project-link">📖 Details</a>
+                    <a href="https://github.com/bhooomyy/Healthcare_Dashboard_Tableau" class="project-link github">💻 GitHub</a>
+                </div>
+            </div>
+
+            <!-- 6. Credit Risk -->
+            <div class="project-card">
+                <div class="project-icon">💳</div>
+                <h3 class="project-title">Credit Risk Analytics + Early Warning Signals</h3>
+                <p class="project-desc">LendingClub 500K+ records. Chunked Python ingestion → 3-stage MySQL pipeline: risk state classification, composite early-warning signal engineering (high utilization, low buffer, high leverage), portfolio bucketing and exposure analysis by risk tier.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">MySQL</span>
+                    <span class="project-tag">Advanced SQL</span>
+                    <span class="project-tag">Risk Analytics</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/credit-risk-analytics-with-early-warning-signals-python-mysql" class="project-link">📖 Details</a>
+                    <a href="https://github.com/bhooomyy/Credit-Risk-Analytics-with-Early-Warning-Signals" class="project-link github">💻 GitHub</a>
+                </div>
+            </div>
+
+            <!-- 7. Customer Churn -->
+            <div class="project-card">
+                <div class="project-icon">👥</div>
+                <h3 class="project-title">Customer Churn Analysis</h3>
+                <p class="project-desc">RBC banking dataset (10K customers). Full BI lifecycle: BRD authored → 5-dimension star schema → advanced DAX (MoM time intelligence) → 2-page executive Power BI dashboard → parallel Excel UAT validation with 100% metric match verification.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Power BI</span>
+                    <span class="project-tag">DAX</span>
+                    <span class="project-tag">Excel UAT</span>
+                    <span class="project-tag">BRD</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/customer-churn-analysis-excel-power-bi-1" class="project-link">📖 Details</a>
+                    <a href="https://github.com/bhooomyy/RBC_CustomerChurnAnalysis" class="project-link github">💻 GitHub</a>
+                </div>
+            </div>
+
+            <!-- 8. IMDb -->
+            <div class="project-card">
                 <div class="project-icon">🎬</div>
                 <h3 class="project-title">IMDb Data Analytics</h3>
-                <p class="project-desc">7 datasets (10M+ rows). Rolling-window breakout detection, episode anomaly detection, actor-director pairing with recursive CTEs.</p>
+                <p class="project-desc">7 IMDb TSV datasets (10M+ rows). Rolling-window actor breakout detection, episode continuity anomaly detection, actor-director pairing via recursive CTEs for CSV-split directors, decade-level genre trends. All Python results cross-validated in MySQL.</p>
                 <div class="project-tags">
                     <span class="project-tag">Python</span>
                     <span class="project-tag">MySQL</span>
                     <span class="project-tag">Recursive CTE</span>
+                    <span class="project-tag">Pandas</span>
                 </div>
                 <div class="project-links">
                     <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/imdb-dataset-analysis-python-mysql" class="project-link">📖 Details</a>
@@ -852,13 +931,49 @@
                 </div>
             </div>
 
-        <div class="project-card">
+            <!-- 9. SQL Analytics -->
+            <div class="project-card">
+                <div class="project-icon">📊</div>
+                <h3 class="project-title">End-to-End SQL Analytics</h3>
+                <p class="project-desc">PostgreSQL across 5 business domains: restaurant ops, banking, retail data mart, subscription analytics, pizza delivery. Techniques: CTEs, window functions (ROW_NUMBER, RANK, SUM OVER), cohort analysis, percentile calculations, conditional aggregations, LEAD/LAG.</p>
+                <div class="project-tags">
+                    <span class="project-tag">PostgreSQL</span>
+                    <span class="project-tag">Window Functions</span>
+                    <span class="project-tag">CTE</span>
+                    <span class="project-tag">Cohort Analysis</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/end-to-end-sql-analytics-for-customer-behavior-operations-postgresql" class="project-link">📖 Details</a>
+                    <a href="https://github.com/bhooomyy/5-Week-SQL-Challenge" class="project-link github">💻 GitHub</a>
+                </div>
+            </div>
+
+            <!-- 10. Czech Financial Analysis — NEW -->
+            <div class="project-card">
+                <div class="project-icon">🏦</div>
+                <h3 class="project-title">Czech Financial Database Analysis</h3>
+                <p class="project-desc">Berka Czech banking dataset — 8-table relational schema (clients, accounts, loans, transactions, cards, districts). Full pipeline: schema design + LOAD DATA INFILE ingestion, gender/DOB decoding from encoded birth_number, 40+ SQL queries across 4 analytical domains: loan risk, transaction behavior, client segmentation, and district-level analysis. Fraud detection via velocity checks, dormant-active pattern flagging, round-number transaction detection, and 3× avg anomaly flagging. Advanced: 6-CTE Transaction Health Scorecard classifying accounts as Healthy / At-Risk / Declining using STDDEV, streak analysis, and LAG; full Customer 360 view combining age, gender, net balance, loan status, card type, and composite RANK score.</p>
+                <div class="project-tags">
+                    <span class="project-tag">MySQL</span>
+                    <span class="project-tag">Advanced SQL</span>
+                    <span class="project-tag">Window Functions</span>
+                    <span class="project-tag">CTEs</span>
+                    <span class="project-tag">Fraud Detection</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://bhattbhoomi111.wixsite.com/bhooomyy/post/stm-transit-dashboard-société-de-transport-de-montréal-qc" class="project-link">📖 Details</a>
+                    <a href="https://github.com/bhooomyy/STM_Dashboard" class="project-link github">💻 GitHub</a>
+                </div>
+            </div>
+
+            <!-- 11. Global Superstore -->
+            <div class="project-card">
                 <div class="project-icon">🌍</div>
-                <h3 class="project-title">Global Superstore Analysis</h3>
-                <p class="project-desc">51K orders, 2K customers, $12.64M revenue. Power BI dashboard with KPI tracking, sales trends, profit analysis by category, and shipping performance metrics.</p>
+                <h3 class="project-title">Global Superstore Sales Analysis</h3>
+                <p class="project-desc">51K orders, 2K customers, $12.64M revenue. Power BI dashboard with KPI cards, revenue trend, profit by category (Technology $0.66M), SLA by order priority, and late customer tracking. Practice project demonstrating core BI skills.</p>
                 <div class="project-tags">
                     <span class="project-tag">Power BI</span>
-                    <span class="project-tag">Dashboard</span>
+                    <span class="project-tag">DAX</span>
                     <span class="project-tag">Sales Analytics</span>
                 </div>
                 <div class="project-links">
@@ -866,33 +981,71 @@
                     <a href="https://github.com/bhooomyy/GlobalSuperStore_AnalysisDashboard" class="project-link github">💻 GitHub</a>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <div class="contact">
             <div class="contact-content">
                 <h2 class="section-title">LET'S CONNECT</h2>
                 <p>Data Analyst & BI professional open to opportunities in analytics, business intelligence, and data-driven roles. Experienced in ETL pipeline design, DAX development, and cross-functional stakeholder collaboration.</p>
-                
                 <div class="social-links">
                     <a href="https://github.com/bhooomyy" class="social-link" title="GitHub">💻</a>
                     <a href="mailto:bhattbhoomi0111@gmail.com" class="social-link" title="Email">✉️</a>
                     <a href="https://www.linkedin.com/in/bhatt-bhoomi/" class="social-link" title="LinkedIn">💼</a>
                     <a href="tel:+1-263-880-4263" class="social-link" title="Phone">📱</a>
                 </div>
-
                 <div class="contact-info">
-                    📍 Montreal, QC | bhattbhoomi0111@gmail.com | +1 (263) 880-4263
+                    📍 Montreal, QC | bhattbhoomi0111@gmail.com 
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        Bhoomi Bhatt © 2024 | Master of Applied Computer Science, Concordia University | Data Analyst Portfolio
+        Bhoomi Bhatt © 2024 | Master of Applied Computer Science, Concordia University 
     </footer>
+
+    <script>
+        const roles = ['Data Analyst', 'Analytics Engineer', 'Data Engineer'];
+        const el    = document.getElementById('typed-role');
+
+        let roleIndex  = 0;
+        let charIndex  = 0;
+        let isDeleting = false;
+
+        const TYPE_SPEED   = 90;   // ms per char when typing
+        const DELETE_SPEED = 45;   // ms per char when deleting
+        const PAUSE_AFTER  = 1800; // ms to hold the full word
+        const PAUSE_BEFORE = 350;  // ms pause before typing next word
+
+        function tick() {
+            const word = roles[roleIndex];
+
+            if (!isDeleting) {
+                el.textContent = word.slice(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === word.length) {
+                    isDeleting = true;
+                    setTimeout(tick, PAUSE_AFTER);
+                    return;
+                }
+                setTimeout(tick, TYPE_SPEED);
+            } else {
+                el.textContent = word.slice(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex  = (roleIndex + 1) % roles.length;
+                    setTimeout(tick, PAUSE_BEFORE);
+                    return;
+                }
+                setTimeout(tick, DELETE_SPEED);
+            }
+        }
+
+        setTimeout(tick, 700);
+    </script>
 </body>
 </html>
